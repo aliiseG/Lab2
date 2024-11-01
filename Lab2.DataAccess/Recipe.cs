@@ -24,6 +24,6 @@ namespace Lab2.DataAccess
         [StringLength(20)]
         public string PrepTime { get; set; }
 
-        public List<Ingredient> Ingredients { get; set; } = new ();
+        public List<Ingredient> Ingredients { get; } = new();
     }
 }
