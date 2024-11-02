@@ -21,9 +21,8 @@ namespace Lab2.DataAccess
         public string Category { get; set; }
 
         [Required] 
-        [StringLength(20)]
-        public string PrepTime { get; set; }
+        public int PrepTime { get; set; }
 
-        public List<Ingredient> Ingredients { get; } = new();
+        public List<Ingredient> Ingredients { get; set; } = new();
     }
 }

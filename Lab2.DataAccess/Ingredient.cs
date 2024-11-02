@@ -17,11 +17,10 @@ namespace Lab2.DataAccess
         public string Name { get; set; }
 
         [Required]
-        public float Amount { get; set; }
+        public double Amount { get; set; }
 
-        [Required]
         [StringLength(10)]
-        public string Units { get; set; }
+        public string? Units { get; set; }
 
         public Recipe Recipe { get; set; }
     }

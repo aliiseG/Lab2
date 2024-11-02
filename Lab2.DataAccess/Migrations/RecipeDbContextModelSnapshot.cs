@@ -29,8 +29,8 @@ namespace Lab2.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<float>("Amount")
-                        .HasColumnType("real");
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -41,7 +41,6 @@ namespace Lab2.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Units")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
@@ -70,10 +69,8 @@ namespace Lab2.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("PrepTime")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<int>("PrepTime")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
