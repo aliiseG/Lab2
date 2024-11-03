@@ -137,21 +137,22 @@ namespace Lab2.Console
             //db.Recipes.Add(rcp2);
             //db.Recipes.Add(rcp3);
 
-            var results = db.Recipes
-                .Where(r => r.PrepTime <= 30);
-            System.Console.WriteLine("Prep time under 30 minutes:");
-            foreach (var recipe in results)
-            {
-                System.Console.WriteLine(recipe.DishName);
-            }
-            var record = db.Recipes.FirstOrDefault(r => r.Category == "Breakfast");
-            System.Console.WriteLine("\nBreakfast: \n" + record.DishName);
+            //izvades
+            //var results = db.Recipes
+            //    .Where(r => r.PrepTime <= 30);
+            //System.Console.WriteLine("Prep time under 30 minutes:");
+            //foreach (var recipe in results)
+            //{
+            //    System.Console.WriteLine(recipe.DishName);
+            //}
+            //var record = db.Recipes.FirstOrDefault(r => r.Category == "Breakfast");
+            //System.Console.WriteLine("\nBreakfast: \n" + record.DishName);
 
 
-            var recordFull = db.Recipes.Include(r => r.Ingredients).FirstOrDefault(r => r.Category == "Dinner");
+            //var recordFull = db.Recipes.Include(r => r.Ingredients).FirstOrDefault(r => r.Category == "Dinner");
 
             ////recordFull.DishName = "Sweet potato & peanut curry";
-            System.Console.WriteLine("\nDinner: \n" + recordFull.DishName);
+            //System.Console.WriteLine("\nDinner: \n" + recordFull.DishName);
 
             //var recordFaulty = db.Ingredients.FirstOrDefault(i => i.Name == "cheddar");
             //recordFaulty.Name = "Cheese";
@@ -159,6 +160,11 @@ namespace Lab2.Console
 
             //recordFull.Ingredients.RemoveAt(recordFull.Ingredients.Count - 1);
 
+            //var resutltsAll = db.Recipes;
+            //foreach (var recipe in resutltsAll)
+            //{
+            //    db.Recipes.Remove(recipe);
+            //}
             db.SaveChanges();
         }
     }

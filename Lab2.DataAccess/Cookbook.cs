@@ -16,7 +16,7 @@ namespace Lab2.DataAccess
         [StringLength(100)]
         public string Title { get; set; }
 
-        
+
         [StringLength(50)]
         public string? Notes { get; set; }
 

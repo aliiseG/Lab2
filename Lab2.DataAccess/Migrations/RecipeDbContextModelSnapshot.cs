@@ -21,6 +21,28 @@ namespace Lab2.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Lab2.DataAccess.Cookbook", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cookbooks");
+                });
+
             modelBuilder.Entity("Lab2.DataAccess.Ingredient", b =>
                 {
                     b.Property<int>("Id")
@@ -48,7 +70,7 @@ namespace Lab2.DataAccess.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Ingredients", (string)null);
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("Lab2.DataAccess.Recipe", b =>
@@ -64,6 +86,9 @@ namespace Lab2.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("CookbooksId")
+                        .HasColumnType("int");
+
                     b.Property<string>("DishName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -74,7 +99,9 @@ namespace Lab2.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recipes", (string)null);
+                    b.HasIndex("CookbooksId");
+
+                    b.ToTable("Recipes");
                 });
 
             modelBuilder.Entity("Lab2.DataAccess.Ingredient", b =>
@@ -86,6 +113,22 @@ namespace Lab2.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("Lab2.DataAccess.Recipe", b =>
+                {
+                    b.HasOne("Lab2.DataAccess.Cookbook", "Cookbooks")
+                        .WithMany("Recipes")
+                        .HasForeignKey("CookbooksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cookbooks");
+                });
+
+            modelBuilder.Entity("Lab2.DataAccess.Cookbook", b =>
+                {
+                    b.Navigation("Recipes");
                 });
 
             modelBuilder.Entity("Lab2.DataAccess.Recipe", b =>
