@@ -48,7 +48,7 @@ namespace Lab2.DataAccess.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingredients", (string)null);
                 });
 
             modelBuilder.Entity("Lab2.DataAccess.Recipe", b =>
@@ -74,7 +74,7 @@ namespace Lab2.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipes", (string)null);
                 });
 
             modelBuilder.Entity("Lab2.DataAccess.Ingredient", b =>

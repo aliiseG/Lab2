@@ -1,5 +1,7 @@
 ﻿using Lab2.DataAccess;
 using System;
+using Microsoft.EntityFrameworkCore;
+
 namespace Lab2.Console
 {
     internal class Program
@@ -10,15 +12,7 @@ namespace Lab2.Console
 
             db.Database.EnsureCreated();
 
-            var results = db.Recipes
-                .Where(r => r.PrepTime <= 30);
-            System.Console.WriteLine("Prep time under 30 minutes:");
-            foreach (var recipe in results)
-            {
-                System.Console.WriteLine(recipe.DishName);
-            }
-            var record = db.Recipes.FirstOrDefault(r => r.Category == "Dinner");
-            System.Console.WriteLine("Dinner: " + record.DishName);
+
 
 
             //var rcp = new Recipe
@@ -139,8 +133,32 @@ namespace Lab2.Console
 
             //};
 
+            //db.Recipes.Add(rcp);
             //db.Recipes.Add(rcp2);
             //db.Recipes.Add(rcp3);
+
+            var results = db.Recipes
+                .Where(r => r.PrepTime <= 30);
+            System.Console.WriteLine("Prep time under 30 minutes:");
+            foreach (var recipe in results)
+            {
+                System.Console.WriteLine(recipe.DishName);
+            }
+            var record = db.Recipes.FirstOrDefault(r => r.Category == "Breakfast");
+            System.Console.WriteLine("\nBreakfast: \n" + record.DishName);
+
+
+            var recordFull = db.Recipes.Include(r => r.Ingredients).FirstOrDefault(r => r.Category == "Dinner");
+
+            ////recordFull.DishName = "Sweet potato & peanut curry";
+            System.Console.WriteLine("\nDinner: \n" + recordFull.DishName);
+
+            //var recordFaulty = db.Ingredients.FirstOrDefault(i => i.Name == "cheddar");
+            //recordFaulty.Name = "Cheese";
+            //System.Console.WriteLine("\nDinner: \n" + recordFaulty.Name);
+
+            //recordFull.Ingredients.RemoveAt(recordFull.Ingredients.Count - 1);
+
             db.SaveChanges();
         }
     }

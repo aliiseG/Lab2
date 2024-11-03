@@ -24,5 +24,7 @@ namespace Lab2.DataAccess
         public int PrepTime { get; set; }
 
         public List<Ingredient> Ingredients { get; set; } = new();
+
+        public Cookbook Cookbooks { get; set; };
     }
 }
